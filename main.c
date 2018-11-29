@@ -4,6 +4,15 @@
 
 #define DBG_PRINT_LINE printf("%d\n", __LINE__)
 
+// Функция активации главного окна
+static void activate(GtkApplication *app, gpointer user_data)
+{
+    GtkWidget *window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(window), "Window");
+    gtk_window_set_default_size(GTK_WINDOW(window), 300, 300);
+    gtk_widget_show_all(window);
+}
+
 // Callbcak выхода из программы
 static gboolean cb_delete(GtkWidget *window, gpointer data)
 {
@@ -14,19 +23,13 @@ static gboolean cb_delete(GtkWidget *window, gpointer data)
 
 int main(int argc, char **argv)
 {
-    GtkWidget *window;
-    // Инициализация GTK
-    gtk_init(&argc, &argv);
-    // Создание окна
-    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    GtkApplication *app;
+    int status;
 
-    // Создание обработчика
-    // gtk_signal_connect(GTK_OBJECT(window), "delete_event", GTK_SIGNAL_FUNC(delete_event_cb), NULL);
-    g_signal_connect(G_OBJECT(window), "delete-event", G_CALLBACK(cb_delete), NULL);
+    app = gtk_application_new("iv.root.example", G_APPLICATION_FLAGS_NONE);
+    g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
+    status = g_application_run(G_APPLICATION(app), argc, argv);
+    g_object_unref(app);
 
-    // Показ всех виджетов
-    gtk_widget_show_all(window);
-    // Запуск приложения
-    gtk_main();
-    return 0;
+    return status;
 }
