@@ -20,8 +20,6 @@ static void activate(GtkApplication *app, gpointer user_data)
     GtkWidget *button = gtk_button_new_with_label("Кнопка");
     gtk_container_add(GTK_CONTAINER(window), button);
     g_signal_connect(button, "clicked", G_CALLBACK(button_click), NULL);
-
-
     gtk_widget_show_all(window);
 }
 
