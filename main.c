@@ -7,7 +7,6 @@
     printf("Приложение завершило свою работу с кодом: %d\n", status);\
     return status
 
-
 int main(int argc, char **argv)
 {
     gtk_init(&argc, &argv);

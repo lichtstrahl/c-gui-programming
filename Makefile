@@ -13,7 +13,3 @@ cb.o	:	callback/cb.c
 clean	:
 	rm *.o
 	rm $(APP_NAME)
-
-rebuild	:
-	clean
-	$(APP_NAME)
