@@ -9,9 +9,12 @@
 #include <libintl.h>
 
 // Активация. Первоначальные настройки приложения
-void activate(GtkApplication *app, gpointer user_data);
+void activate(GtkApplication *, gpointer );
 // Объявление функции обработчика нажатия на кнопку
-void button_click(GtkWidget *widget, char* data);
+void button_click(GtkWidget *, char*);
+
+// Начальная конфигурация окна
+void onCreate(GtkBuilder *);
 
 
 #endif
